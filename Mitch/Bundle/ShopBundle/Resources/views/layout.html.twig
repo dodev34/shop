@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Mitch Shopping{% endblock %}
+
+{% block stylesheets %}
+    {% stylesheets 
+        '@MitchShopBundle/Resources/public/css/bootstrap.min.css' 
+        '@MitchShopBundle/Resources/public/css/bootstrap-responsive.min.css' 
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+
+{% block body %}{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    {% javascripts '@MitchShopBundle/Resources/public/js/bootstrap.min.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script type="text/javascript">
+        $('.dropdown-toggle').dropdown();
+    </script>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'MitchShopBundle::layout.html.twig' %}
+
+{% block body %} {{ parent() }}
+
+<div class="container">
+    <div class="row-fluid">
+
+        <div class="span8">
+
+            {% include 'MitchShopBundle::flash.html.twig' %}
+
+            <div class="page-header">
+              <h1>Panier<small> {{ app.session.get('cart')|length }} produit(s)</small></h1>
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Produits</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for product in products %}
+                <tr>
+                    <td class="text-info">{{ product.name }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td class="muted">Aucun produit dans votre panier</td>
+                </tr>
+                {% endfor %}
+            <tbody>
+            </table>
+        </div>
+
+        <div class="span4">
+            <a class="btn" href="{{ path('mitch_shop_index') }}">Retour aux produits</a>
+            <br />
+            <br />
+            <a onclick="return confirm('Est vous sûr(e) de vouloir vider la panier');" class="btn btn-danger" href="{{ path('mitch_shop_drop') }}">Vider le panier</a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

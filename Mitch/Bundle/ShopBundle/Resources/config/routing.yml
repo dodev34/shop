@@ -1,0 +1,11 @@
+mitch_shop_index:
+    pattern:  /
+    defaults: { _controller: MitchShopBundle:Shop:index }
+
+mitch_shop_show:
+    pattern:  /panier
+    defaults: { _controller: MitchShopBundle:Shop:show }
+
+mitch_shop_drop:
+    pattern:  /vider-le-panier
+    defaults: { _controller: MitchShopBundle:Shop:drop }

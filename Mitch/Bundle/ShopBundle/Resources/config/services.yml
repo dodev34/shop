@@ -1,0 +1,8 @@
+parameters:
+    mitch_shop.listener.card.class: Mitch\Bundle\ShopBundle\Listener\CardListener
+
+services:
+    kernel.listener.card_listener:
+        class: %mitch_shop.listener.card.class%
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onCoreController }

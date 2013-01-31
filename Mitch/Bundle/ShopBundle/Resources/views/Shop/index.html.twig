@@ -1,0 +1,68 @@
+{% extends 'MitchShopBundle::layout.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <div class="row-fluid">
+        
+        <div class="span8">
+            
+            {% include 'MitchShopBundle::flash.html.twig' %}
+
+            <div class="page-header">
+              <h1>Liste des produits<small> sélectionnez un produit</small></h1>
+            </div>
+
+            <form method="post" action="{{ path('mitch_shop_index') }}">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Produits disponible</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for child in form.product %}
+                        <tr>
+                            <td>
+                                <label class="radio">
+                                    {{ form_widget(child) }}
+                                    {{ child.get('label') }}
+                                </label>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td class="text-error">
+                                Aucun produit en base pour le moment. Veuillez les inserer manuellement...
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+                {{ form_widget(form._token) }}
+
+                {% if form.product is not empty %}
+                <input type="submit" class="btn pull-right" value="Ajouter au panier" />
+                {% endif %}
+            </form>
+        </div>
+
+        <div class="span4">
+            <div class="btn-group">
+                <button class="btn">
+                    Panier | {{ app.session.get('cart')|length }} produit(s)
+                </button>
+                <button data-toggle="dropdown" class="btn dropdown-toggle">
+                    <span class="caret"></span>
+                </button>
+                    <ul class="dropdown-menu">
+                    <li><a href="{{ path('mitch_shop_show') }}">Voir mon panier</a></li>
+                    <li><a onclick="return confirm('Est vous sûr(e) de vouloir vider la panier');" href="{{ path('mitch_shop_drop') }}">Vider mon panier</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
